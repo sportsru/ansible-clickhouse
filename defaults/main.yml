@@ -119,6 +119,8 @@ clickhouse_config:
   max_session_timeout: 3600
   default_session_timeout: 60
 
+clickhouse_protocols: {}
+
 clickhouse_dicts: []
 
 clickhouse_path_base: "/var/lib"

@@ -95,6 +95,16 @@
   become: true
   when: clickhouse_storage is defined
 
+- name: Config | Generate protocols config
+  template:
+    src: protocols.j2
+    dest: '{{ clickhouse_path_configdir }}/config.d/protocols.xml'
+    owner: '{{ clickhouse_user | default("clickhouse") }}'
+    group: '{{ clickhouse_group | default("clickhouse") }}'
+    mode: "0644"
+  become: true
+  when: clickhouse_protocols is defined
+
 - name: Config | Fix interserver_http_port and intersever_https_port collision
   lineinfile:
     path: "{{ clickhouse_path_configdir }}/config.xml"

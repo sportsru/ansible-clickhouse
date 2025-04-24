@@ -1,0 +1,12 @@
+{{ ansible_managed | comment('xml') }}
+<clickhouse>
+  <protocols>
+  {% for protocol_name, config in clickhouse_protocols.items() %}
+  <{{ protocol_name }}>
+  {% for key, value in config.items() %}
+    <{{ key }}>{{ value }}</{{ key }}>
+  {% endfor %}
+  </{{ protocol_name }}>
+  {% endfor %}
+  </protocols>
+</clickhouse>
