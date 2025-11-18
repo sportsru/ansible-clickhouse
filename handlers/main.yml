@@ -2,5 +2,5 @@
 # handlers file for clickhouse
 - name: "Restart Clickhouse Service"
   set_fact:
-    clickhouse_service_ensure: "restarted"
+    clickhouse_service_ensure: "started"
   listen: 'restart-ch'
