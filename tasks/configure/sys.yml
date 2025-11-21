@@ -20,7 +20,7 @@
     state: directory
     owner: "{{ clickhouse_user | default('clickhouse') }}"
     group: "{{ clickhouse_group | default('clickhouse') }}"
-    mode: "ug=rwx,o-rwx"
+    mode: "0500"
   become: true
 
 - name: Config | Create users.d folder
@@ -29,7 +29,7 @@
     state: directory
     owner: "{{ clickhouse_user | default('clickhouse') }}"
     group: "{{ clickhouse_group | default('clickhouse') }}"
-    mode: "ug=rwx,o-rwx"
+    mode: "0500"
   become: true
 
 - name: Config | Generate system config
