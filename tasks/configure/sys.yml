@@ -1,16 +1,16 @@
 ---
 - name: Check clickhouse config, data and logs
   file:
-    dest: "{{ item }}"
+    dest: "{{ item.dest }}"
     owner: "{{ clickhouse_user | default('clickhouse') }}"
     group: "{{ clickhouse_group | default('clickhouse') }}"
-    mode: "ug=rwx,o-rwx"
+    mode: "{{ item.mode | default('0770') }}"
     state: directory
   loop:
-    - "{{ clickhouse_path_logdir }}"
-    - "{{ clickhouse_path_configdir }}"
-    - "{{ clickhouse_path_tmp }}"
-    - "{{ clickhouse_path_data }}"
+    - { dest: "{{ clickhouse_path_logdir }}", mode: "0770" }
+    - { dest: "{{ clickhouse_path_configdir }}", mode: "0700" }
+    - { dest: "{{ clickhouse_path_tmp }}", mode: "0770" }
+    - { dest: "{{ clickhouse_path_data }}", mode: "0700" }
   notify: restart-ch
   become: true
 
