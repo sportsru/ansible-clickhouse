@@ -89,6 +89,13 @@
 {% if user.access_management is defined %}
             <access_management>{{ user.access_management }}</access_management>
 {% endif %}
+{% if user.grants is defined %}
+            <grants>
+{% for query in user.grants %}
+                <query>{{ query }}</query>
+{% endfor %}
+            </grants>
+{% endif %}
         </{{ user.name }}>
 {% endfor %}
     </users>
